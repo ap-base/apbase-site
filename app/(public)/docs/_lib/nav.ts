@@ -1,4 +1,5 @@
-export const API_REFERENCE_URL = 'https://ap-base.github.io/apbase-docs/api';
+// Sphinx autodoc output, built into out/api/ by scripts/build-api-reference.sh during deploy (absent in `next dev`).
+export const API_REFERENCE_URL = '/api';
 
 export const SLUG_TO_PATH: Record<string, string> = {
   overview:                          'index.md',

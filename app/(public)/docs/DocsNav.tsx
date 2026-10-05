@@ -25,9 +25,11 @@ function NavLink({ slug, label, active }: { slug: string; label: string; active:
   );
 }
 
+// Plain <a> for pages outside the Next.js app (the Sphinx API reference); only other origins open in a new tab.
 function ExternalLink({ href, label }: { href: string; label: string }) {
+  const newTab = /^https?:\/\//.test(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
   return (
-    <a href={href} className={styles.sidebarLink} target="_blank" rel="noopener noreferrer">
+    <a href={href} className={styles.sidebarLink} {...newTab}>
       {label}
     </a>
   );
