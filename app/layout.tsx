@@ -14,11 +14,13 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_CONFIG.name}`,
   },
   description: SITE_CONFIG.description,
+  // './' resolves against each page's own path, so every page is its own canonical (with trailing slash).
+  alternates: { canonical: './' },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     siteName: SITE_CONFIG.name,
-    url: '/',
+    url: './',
   },
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
