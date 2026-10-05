@@ -1,0 +1,249 @@
+/* /pacotes: current release card and versioned roadmap timeline.
+   Rules are scoped under a parent class to win over `.container p` in page.module.css. */
+
+/* ---------- Status pill ---------- */
+
+.pill {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--caption);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pill.live {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.pill.next {
+  border-color: #cfdcff;
+  background: #eef3ff;
+  color: #2d5bd1;
+}
+
+/* ---------- Current release ---------- */
+
+.current {
+  margin-top: 1.35rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+  border: 1px solid var(--ink-strong);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.currentMain {
+  min-width: 0;
+}
+
+.current h3 {
+  margin: 0.5rem 0 0;
+  font-size: 1.3rem;
+  color: var(--ink-strong);
+}
+
+.current .currentMain p {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.specs {
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+}
+
+.specs > div {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.75rem;
+}
+
+.specs dt {
+  color: var(--caption);
+}
+
+.specs dd {
+  margin: 0;
+  color: var(--ink-strong);
+  font-weight: 500;
+}
+
+.specs a {
+  color: inherit;
+}
+
+/* ---------- Roadmap timeline ---------- */
+
+.timeline {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.timeline .phase {
+  margin: 0 0 0.9rem 6.5rem;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--caption);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.timeline .phase::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.releases {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.release {
+  display: grid;
+  grid-template-columns: 4.5rem 1.25rem minmax(0, 1fr);
+  column-gap: 0.85rem;
+}
+
+.version {
+  padding-top: 0.1rem;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.rail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--line);
+}
+
+.release:first-child .rail::before {
+  top: 0.5rem;
+}
+
+.release:last-child .rail::before {
+  bottom: auto;
+  height: 0.5rem;
+}
+
+.dot {
+  position: relative;
+  margin-top: 0.25rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #c9ccd1;
+  background: var(--white);
+}
+
+.release.live .dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.release.next .dot {
+  border-color: #2d5bd1;
+}
+
+.body {
+  padding-bottom: 1.75rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.4rem 1.25rem;
+  align-items: start;
+}
+
+.text {
+  min-width: 0;
+}
+
+.text h3 {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: var(--ink-strong);
+}
+
+.timeline .text p {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.code {
+  margin: 0;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--soft);
+  color: var(--ink-strong);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.timeline + .note {
+  margin-top: 0.5rem;
+  color: var(--caption);
+  font-size: 0.8rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+  .current {
+    grid-template-columns: 1fr;
+    padding: 1.15rem;
+  }
+
+  .release {
+    grid-template-columns: 3.5rem 1.1rem minmax(0, 1fr);
+    column-gap: 0.6rem;
+  }
+
+  .timeline .phase {
+    margin-left: 5.2rem;
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+  }
+}

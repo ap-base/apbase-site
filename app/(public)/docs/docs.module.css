@@ -1,0 +1,606 @@
+/* ─── Layout ─── */
+
+.docsLayout {
+  width: min(1320px, 100%);
+  margin: 0 auto;
+  padding: 5.5rem 1.25rem 4rem;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 0;
+  align-items: start;
+}
+
+.docsContent {
+  min-width: 0;
+  border-left: 1px solid var(--border);
+  padding: 0 0 0 1.75rem;
+}
+
+/* ─── Sidebar ─── */
+
+.sidebar {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  padding: 0 1rem 0 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 100px);
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.sidebarLink {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 0.38rem 0.5rem;
+  transition: background-color 0.12s, color 0.12s;
+}
+
+.sidebarLink:hover {
+  background: var(--hover);
+  color: var(--ink-strong);
+}
+
+.sidebarLinkActive {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-weight: 600;
+}
+
+.sidebarLinkActive:hover {
+  background: var(--accent-soft);
+}
+
+.sidebarGroupHead {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.sidebarToggle {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.sidebarToggle:hover {
+  background: var(--hover);
+}
+
+.sidebarToggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.chevron {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.15s;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.sidebarGroupLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0.1rem 0 0.3rem 0.75rem;
+  padding-left: 0.5rem;
+  border-left: 1px solid var(--border);
+}
+
+.sidebarGroupLinks .sidebarLink {
+  font-size: 0.86rem;
+}
+
+/* ─── Search ─── */
+
+.search {
+  margin: 0 0 1rem;
+}
+
+.searchForm {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.6rem;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  color: var(--faint);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.5rem 0.6rem 0.5rem 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--ink-strong);
+}
+
+.searchInput::placeholder {
+  color: var(--faint);
+}
+
+.searchInput:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+  border-color: transparent;
+}
+
+.searchResults {
+  margin-top: 0.4rem;
+  padding: 0.25rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.searchResult {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.searchResult:hover,
+.searchResult:focus-visible {
+  background: var(--hover);
+}
+
+.searchResultTitle {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+
+.searchResultContext {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.searchResultSnippet {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.searchEmpty {
+  margin: 0;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.sidebarVersion {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.sidebarVersion img {
+  display: block;
+  height: 20px;
+}
+
+.sidebarGroupLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+/* ─── Doc page inner (article + right ToC) ─── */
+
+.docPageInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 200px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* ─── Prose (rendered markdown) ─── */
+
+.prose {
+  min-width: 0;
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 0.97rem;
+}
+
+.prose h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.7rem, 2.8vw, 2.2rem);
+  line-height: 1.1;
+  color: var(--ink-strong);
+}
+
+.prose h2 {
+  margin: 2rem 0 0.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  line-height: 1.2;
+  color: var(--ink-strong);
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.prose h3 {
+  margin: 1.4rem 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink-strong);
+}
+
+/* Anchor targets (headings, sections, citations) clear the fixed navbar. */
+.prose [id] {
+  scroll-margin-top: 96px;
+}
+
+.prose p {
+  margin: 0.7rem 0 0;
+  max-width: 78ch;
+}
+
+.prose a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  color: var(--accent-strong);
+}
+
+.prose ul,
+.prose ol {
+  margin: 0.6rem 0 0 1.25rem;
+  padding: 0;
+}
+
+.prose li {
+  margin-top: 0.3rem;
+  line-height: 1.55;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--hover);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 0.1rem 0.32rem;
+  color: var(--muted-strong);
+}
+
+.prose pre {
+  margin: 0.85rem 0 0;
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.9rem 1.05rem;
+  overflow-x: auto;
+  line-height: 1.55;
+}
+
+.prose pre code,
+.prose pre :global(code.hljs) {
+  display: block;
+  background: none;
+  border: none;
+  padding: 0;
+  overflow: visible;
+  font-size: 0.84rem;
+  color: var(--muted-strong);
+}
+
+/* ─── Tabs (MyST tab-set) ─── */
+
+.prose :global(.doc-tabs) {
+  margin: 0.85rem 0 0;
+}
+
+.prose :global(.doc-tab-list) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose :global(.doc-tab-button) {
+  margin-bottom: -1px;
+  padding: 0.45rem 0.85rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.prose :global(.doc-tab-button:hover) {
+  color: var(--ink-strong);
+}
+
+.prose :global(.doc-tab-button[aria-selected='true']) {
+  border-bottom-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.prose :global(.doc-tab-button:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.prose :global(.doc-tab) {
+  padding-top: 0.15rem;
+}
+
+.prose :global(.doc-tab > :first-child) {
+  margin-top: 0.75rem;
+}
+
+/* ─── Bibliography ─── */
+
+.prose :global(.bibliography) {
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+}
+
+.prose :global(.bibliography li) {
+  margin-top: 0.55rem;
+}
+
+.prose :global(.bibliography li:target) {
+  background: var(--accent-soft);
+  border-radius: 6px;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--border);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+
+.prose blockquote {
+  margin: 0.85rem 0 0;
+  border-left: 3px solid var(--border);
+  padding-left: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ─── Admonitions (MyST directives) ─── */
+
+.prose :global(.admonition) {
+  margin: 1rem 0 0;
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.92rem;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+}
+
+.prose :global(.admonition > :first-child) {
+  margin-top: 0;
+}
+
+.prose :global(.admonition-title) {
+  font-weight: 700;
+}
+
+.prose :global(.admonition pre) {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.prose :global(.admonition-note) {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+  color: #1e3a5f;
+}
+
+.prose :global(.admonition-warning),
+.prose :global(.admonition-caution) {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #78350f;
+}
+
+.prose :global(.admonition-tip),
+.prose :global(.admonition-hint) {
+  border-color: var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.prose :global(.admonition-danger),
+.prose :global(.admonition-error) {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+
+.prose :global(.admonition-important) {
+  border-color: #e9d5ff;
+  background: #faf5ff;
+  color: #4c1d95;
+}
+
+/* ─── KaTeX math ─── */
+
+.prose :global(.katex-display) {
+  overflow-x: auto;
+  margin: 0.85rem 0 0;
+}
+
+/* ─── Previous / next pager (mirrors Furo's related-pages footer) ─── */
+
+.docMain {
+  min-width: 0;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.pagerLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--ink-strong);
+  text-decoration: none;
+}
+
+.pagerLink:hover .pagerTitle {
+  color: var(--accent-text);
+}
+
+.pagerPrev {
+  margin-right: auto;
+}
+
+.pagerNext {
+  margin-left: auto;
+  text-align: right;
+}
+
+.pagerHint {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.pagerTitle {
+  display: block;
+  font-size: 0.97rem;
+}
+
+.pagerArrow {
+  font-size: 1.4rem;
+  color: var(--muted);
+}
+
+/* ─── Right ToC ─── */
+
+.rightToc {
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  font-size: 0.82rem;
+  border-left: 2px solid var(--border);
+  padding-left: 0.85rem;
+}
+
+.rightTocTitle {
+  composes: eyebrow from global;
+  margin: 0 0 0.5rem;
+  color: var(--muted-strong);
+}
+
+.rightTocLink {
+  display: block;
+  color: var(--muted);
+  text-decoration: none;
+  line-height: 1.35;
+  padding: 0.18rem 0;
+  transition: color 0.12s;
+}
+
+.rightTocLink:hover {
+  color: var(--ink-strong);
+}
+
+.rightTocSub {
+  padding-left: 0.85rem;
+  font-size: 0.79rem;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 1100px) {
+  .docPageInner {
+    grid-template-columns: 1fr;
+  }
+
+  .rightToc {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .docsLayout {
+    grid-template-columns: 1fr;
+    padding-top: 4.5rem;
+    gap: 1rem;
+  }
+
+  .sidebar {
+    position: static;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .docsContent {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  /* KaTeX renders at 1.21em; display equations at text size fit narrow screens better. */
+  .prose :global(.katex-display > .katex) {
+    font-size: 1em;
+  }
+}
